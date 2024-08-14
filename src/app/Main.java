@@ -7,10 +7,10 @@ public class Main {
     public static void main(String[] args) {
 
         int [][] matrix = {
-                {5, 28, 13, 7},
-                {9, 33, 16, 1},
-                {2, 28, 34, 8},
-                {5, 12, 20, 4}
+                {2, 24, 8, 33},
+                {31, 7, 18, 26},
+                {40, 1, 7, 15},
+                {8, 38, 17, 4}
         };
 
         System.out.println("Матриця 4x4: ");
@@ -22,36 +22,35 @@ public class Main {
             System.out.println();
         }
 
-        int sumEvenRows = 0;
-        int sumOddRows = 0;
-        int firstEvenRow = 0;
-        int firstOddRow = 1;
+        int sumEvenRows = 0; //Змінна, яка накопичує суму парних рядків
+        int sumOddRows = 0; //Змінна, яка накопичує суму непарних рядків
+        int firstEvenRow = 0; //<-індекс рядку в масиві
+        int firstOddRow = 1; //<-індекс рядку в масиві
         int secondEvenRow = 2;
         int secondOddRow = 3;
 
-        if (matrix[firstEvenRow].length == matrix[secondEvenRow].length){
-            for (int i = 0; i < matrix[firstEvenRow].length; i++)
-                sumEvenRows += matrix[firstEvenRow][i] + matrix[secondEvenRow][i];
+        //Рахуємо суму у парних рядках
+        for (int n = 0; n < matrix[firstEvenRow].length; n++) {
+            sumEvenRows += matrix[firstEvenRow][n] + matrix[secondEvenRow][n];
+        }
+        //та непарних рядках
+        for (int v = 0; v < matrix[firstOddRow].length; v++) {
+            sumOddRows += matrix[firstOddRow][v] + matrix[secondOddRow][v];
         }
 
-        if (matrix[firstOddRow].length == matrix[secondOddRow].length){
-            for (int k = 0; k < matrix[firstOddRow].length; k++)
-                sumOddRows += matrix[firstOddRow][k] + matrix[secondOddRow][k];
-        }
-
-        int multiEvenColumns = 1;
-        int multiOddColumns = 1;
+        int multiEvenColumns = 1; // Змінна, яка накопичує добуток парних стовбців
+        int multiOddColumns = 1; // 1 оскільки множення на 0 завжди буде давати 0
         int firstEvenColumns = 0;
         int secondEvenColumns = 2;
-        int firstOddColumns = 1;
-        int secondOddColumns = 3;
+        int firstOddColumns = 1; //<-індекс рядку в масиві
+        int secondOddColumns = 3; //<-індекс рядку в масиві
 
+        // Знаходимо добуток парних стовбчиків
         for (int[] rowEven : matrix){
-            if (firstEvenColumns < rowEven.length && secondEvenColumns < rowEven.length)
                 multiEvenColumns *= rowEven[firstEvenColumns] * rowEven[secondEvenColumns];
         }
+        //та непарних стовбчиків
         for (int[] rowOdd : matrix){
-            if (firstOddColumns < rowOdd.length && secondOddColumns < rowOdd.length)
                 multiOddColumns *= rowOdd[firstOddColumns] * rowOdd[secondOddColumns];
         }
 
